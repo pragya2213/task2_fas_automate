@@ -1,16 +1,23 @@
-# test_0001
+# Task Automate Task warrior CLI and Fake Story API Endpoints
 
-# Task Automate Fake Story API Endpoints
-
-
-1. **Clone the repository**.
+In this repository, below tasks are implemented
+* Taskwarrior CLI automation
+* Fake Story API Endpoint automation
+  
+1. **Install Taskwarrior CLI**.
+   Open a terminal and install taskwarrior CLI application:
+   - on macOS and Linux:
+   ```bash
+   sudo apt-get install taskwarrior
+   ```
+2. **Clone the repository**.
    Open a terminal, change to your desired workspace folder, and run the following command to clone this repository:
 
    ```bash
-   git clone https://github.com/pragya2213/task2_fas_automate.git
+   git clone https://github.com/pragya2213/task_fas_twcli_automate.git
    ```
 
-2. **Create a virtual environment**.
+3. **Create a virtual environment**.
    Run the following command to create the virtual environment:
 
 
@@ -18,8 +25,14 @@
    python -m venv env1
    ```
 
-3. **Activate virtual environment**.
+4. **Activate virtual environment**.
    Activate the virtual environment depending upon the operating systems:
+   
+   - on macOS and Linux:
+
+    ```bash
+     source env1/bin/activate
+    ```
    - On Windows (using Command Prompt):
 
     ```bash
@@ -32,34 +45,32 @@
      .\env1\Scripts\Activate.ps1
     ```
 
-   - on macOS and Linux:
-
-    ```bash
-     source env1/bin/activate
-    ```
-
-4. **Installing dependencies in a virtual environment**.
+5. **Installing dependencies in a virtual environment**.
    Once the virtual environment is activated, install dependencies using the following command:
 
    ```bash
    pip install -r requirements.txt
    ```
-5. **Run Tests**.
+6. **Run Tests**.
    Once the dependencies are installed, run existing tests using the following command:
 
    ```shell
    pytest
    ```
-6. **Writing/adding test cases**.
-   An example test file is located in the 'tests' folder which can be extended with further scenarios. Make changes to the test files, commit and push the code.
+7. **Writing/adding test cases**.
+   In the tests folder following two files are implemented:
+   * test_taskwarrior.py: Contains 3 scenarios for adding a task, listing all tasks and completing a atask using taskwarrior CLI  
+   * test_fakeapistory_cart.py: Contains 5 scenarios related to fakestory api endpoints from 'carts' section
+   
+   Both files can be extended with further scenarios specific to the applications. Make changes to the test files, commit and push the code.
 
 
-7. **Run tests on CI**.
+8. **Run tests on CI**.
    An example workflow yaml file (below) is created to run tests on CI. Modify the file if changes are needed and push the code to effect the changes.
 
    ```yaml
 
-    name: Pytest API Testing
+    name: FakeStoryAPI Test
 
     on:
       push:
@@ -71,7 +82,7 @@
       contents: read
 
     jobs:
-      Pytes-API-Testing:
+      FakeStoryAPI-Testing:
 
         runs-on: ubuntu-latest
 
@@ -81,6 +92,8 @@
           uses: actions/setup-python@v3
           with:
             python-version: "3.10"
+        - name: Install Taskwarrior
+          run: sudo apt-get install taskwarrior
         - name: Install dependencies
           run: |
             python -m pip install --upgrade pip
